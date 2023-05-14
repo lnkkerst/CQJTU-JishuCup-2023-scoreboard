@@ -85,7 +85,7 @@ export interface Player {
   /** 战斗节点目标生命+护盾值不掉 */
   perfectBattle: number;
   /** 走骑士路线时带脆弱通关结局 */
-  clearKnightWithfragile: true;
+  clearKnightWithfragile: boolean;
   /** 紧急作战 */
   highDifficultyEmergencyFight: EmergencyFight[];
   /** 特殊事件结点达成条件 */

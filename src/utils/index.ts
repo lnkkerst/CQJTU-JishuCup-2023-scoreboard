@@ -1,6 +1,8 @@
 import { sum } from 'lodash-es';
 import type { Player } from '~/types';
 
+export { Toast, Swal } from './swal';
+
 export const LevelScores = Array.from(
   { length: 5 },
   (_, index) => index * 100 + 100
@@ -46,6 +48,16 @@ export const EmergencyFightScores = [
   { name: '余烬方阵', score: 80 },
   { name: '水火相容', score: 140 },
   { name: '互助（无漏，且盾卫未死亡）', score: 40 }
+];
+
+export const SpecialEventScores = [
+  { name: '建工现场（击杀鸭子）', score: 30 },
+  { name: '真相（通关）', score: 50 },
+  { name: '真相（无漏）', score: 100 },
+  { name: '摸腿（通关）', score: 50 },
+  { name: '摸腿（无漏）', score: 100 },
+  { name: '鸭本运作（通关）', score: 60 },
+  { name: '狂信如火（无漏）', score: 50 }
 ];
 
 export function calculateScore(player: Player) {
