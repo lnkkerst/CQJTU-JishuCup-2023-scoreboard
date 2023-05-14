@@ -6,6 +6,7 @@ import {
   VApp,
   VAppBar,
   VAppBarNavIcon,
+  VAppBarTitle,
   VList,
   VListItem,
   VMain,
@@ -23,6 +24,7 @@ const route = useRoute();
         variant="text"
         @click.stop="drawer = !drawer"
       ></VAppBarNavIcon>
+      <VAppBarTitle>重交寄数杯 - 记分板</VAppBarTitle>
     </VAppBar>
 
     <VNavigationDrawer v-model="drawer">
