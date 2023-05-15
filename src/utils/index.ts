@@ -66,11 +66,15 @@ export function calculateScore(player: Player) {
 
   baseScore += sum(LevelScores.slice(0, player.levels));
 
+  const clearLevel = player.levels > 4.5;
+
   extraScore += (player.collections + player.tacticalItems) * 15;
 
   extraScore += player.negativeCollections * 30;
 
-  baseScore += bossScores[player.endingBoss];
+  if (clearLevel) {
+    baseScore += bossScores[player.endingBoss];
+  }
 
   for (const item of player.wonderlands) {
     baseScore += item.score;
