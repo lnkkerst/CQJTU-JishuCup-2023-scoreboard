@@ -121,6 +121,10 @@ export function calculateScore(player: Player) {
     }
   }
 
+  for (const item of player.specialEvents) {
+    extraScore += item.score;
+  }
+
   extraScore += player.killedAnimals * 20;
 
   extraScore += player.treasureChest.spike * 10;

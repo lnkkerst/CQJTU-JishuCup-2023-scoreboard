@@ -15,6 +15,7 @@ import {
   VSelect,
   VTextField
 } from 'vuetify/components';
+import { cloneDeep } from 'lodash-es';
 import type { Player } from '~/types';
 import {
   EmergencyFightScores,
@@ -35,12 +36,12 @@ const difficulties = Reflect.ownKeys(difficultyBase).map(k => ({
   title: `${String(k)} (x${(difficultyBase as any)[parseInt(String(k))]})`
 }));
 
-const form = ref({ ...(props.player ?? createNewPlayer()) });
+const form = ref(cloneDeep(props.player ?? createNewPlayer()));
 
 watch(
   () => props.player,
   () => {
-    form.value = { ...(props.player ?? createNewPlayer()) };
+    form.value = cloneDeep(props.player ?? createNewPlayer());
   }
 );
 </script>
@@ -323,12 +324,6 @@ watch(
         v-model.number="form.specialBonus"
         type="number"
         label="触发特殊奖励次数"
-      ></VTextField>
-
-      <VTextField
-        v-model.number="form.comfortBonus"
-        type="number"
-        label="触发安慰奖励次数"
       ></VTextField>
 
       <VTextField
