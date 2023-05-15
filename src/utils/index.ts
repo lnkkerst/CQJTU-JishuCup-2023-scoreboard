@@ -131,11 +131,16 @@ export function calculateScore(player: Player) {
 
   extraScore -= player.getMoneyExceeds12 * 20;
 
+  baseScore = Math.floor(baseScore + 0.5);
+  extraScore = Math.floor(extraScore + 0.5);
+  const score = Math.floor(
+    // @ts-expect-error: key may out of range
+    ((baseScore * difficultyBase[player.difficulty]) as number) + extraScore
+  );
+
   return {
     baseScore,
     extraScore,
-    score:
-      // @ts-expect-error: key may out of range
-      ((baseScore * difficultyBase[player.difficulty]) as number) + extraScore
+    score
   };
 }
