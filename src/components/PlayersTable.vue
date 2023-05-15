@@ -3,7 +3,7 @@ import { computed, reactive } from 'vue';
 import { VDataTable } from 'vuetify/labs/components';
 import { VBtn } from 'vuetify/components';
 import type { Player } from '~/types';
-import { calculateScore } from '~/utils';
+import { calculateScore, difficultyBase } from '~/utils';
 
 const props = defineProps<{ players: Player[]; search?: string }>();
 const emit = defineEmits<{
@@ -38,6 +38,15 @@ const playerScores = computed(() =>
       items-per-page="-1"
       :search="props.search"
     >
+      <template #[`item.difficulty`]="{ item }">
+        <span>
+          {{ item.raw.difficulty }}
+        </span>
+        <span>
+          {{ ` (x${(difficultyBase as any)[item.raw.difficulty]})` }}
+        </span>
+      </template>
+
       <template #[`item.operation`]="{ item }">
         <VBtn
           icon="mdi-pencil"
