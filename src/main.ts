@@ -9,9 +9,10 @@ import routes from '~pages';
 import '@unocss/reset/tailwind.css';
 import 'virtual:uno.css';
 import 'vuetify/styles';
-import './styles.css';
+import './styles.scss';
 import '@mdi/font/css/materialdesignicons.css';
 import '@sweetalert2/theme-material-ui/material-ui.css';
+import 'overlayscrollbars/overlayscrollbars.css';
 
 const router = createRouter({ routes, history: createWebHashHistory() });
 
@@ -23,6 +24,15 @@ createApp(App)
       locale: {
         locale: 'zhHans',
         messages: { zhHans }
+      },
+      theme: {
+        themes: {
+          light: {
+            colors: {
+              primary: '#0055aa'
+            }
+          }
+        }
       }
     })
   )

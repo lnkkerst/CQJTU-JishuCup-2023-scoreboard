@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import {
+  VBtn,
   VCard,
   VCardSubtitle,
   VCardText,
@@ -24,6 +25,10 @@ import {
 import { createNewPlayer } from '~/utils/player';
 
 const props = defineProps<{ player?: Player }>();
+const emit = defineEmits<{
+  (e: 'updatePlayer', player: Player): void;
+  (e: 'cancleEdit'): void;
+}>();
 
 const difficulties = Reflect.ownKeys(difficultyBase).map(k => ({
   value: parseInt(String(k)),
@@ -58,23 +63,25 @@ watch(
       :items="[1, 2, 3, 4, 5]"
     ></VSelect>
 
-    <VTextField
-      v-model.number="form.collections"
-      type="number"
-      label="收藏品数量"
-    ></VTextField>
+    <div grid grid-cols-3 gap="2">
+      <VTextField
+        v-model.number="form.collections"
+        type="number"
+        label="收藏品数量"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.tacticalItems"
-      type="number"
-      label="战术道具数量"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.tacticalItems"
+        type="number"
+        label="战术道具数量"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.negativeCollections"
-      type="number"
-      label="负面藏品数量"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.negativeCollections"
+        type="number"
+        label="负面藏品数量"
+      ></VTextField>
+    </div>
 
     <VSelect
       v-model="form.endingBoss"
@@ -288,47 +295,66 @@ watch(
       </div>
     </div>
 
-    <VTextField
-      v-model.number="form.killedAnimals"
-      type="number"
-      label="关卡最后出现鸭子，熊，狗时，成功击杀次数"
-    ></VTextField>
+    <VCard variant="outlined" my="sm">
+      <VCardSubtitle pt="sm">特殊宝箱</VCardSubtitle>
+      <VCardText grid grid-cols-2 gap="2">
+        <VTextField
+          v-model.number="form.treasureChest.spike"
+          type="number"
+          label="尖刺"
+        ></VTextField>
+        <VTextField
+          v-model.number="form.treasureChest.fish"
+          type="number"
+          label="恐鱼"
+        ></VTextField>
+      </VCardText>
+    </VCard>
 
-    <VTextField
-      v-model.number="form.treasureChest"
-      type="number"
-      label="特殊宝箱次数"
-    ></VTextField>
+    <div grid grid-cols-3 gap="2">
+      <VTextField
+        v-model.number="form.killedAnimals"
+        type="number"
+        label="关卡最后出现鸭子，熊，狗时，成功击杀次数"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.specialBonus"
-      type="number"
-      label="触发特殊奖励次数"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.specialBonus"
+        type="number"
+        label="触发特殊奖励次数"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.comfortBonus"
-      type="number"
-      label="触发安慰奖励次数"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.comfortBonus"
+        type="number"
+        label="触发安慰奖励次数"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.comfortBonus"
-      type="number"
-      label="触发安慰奖励次数"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.comfortBonus"
+        type="number"
+        label="触发安慰奖励次数"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.reducedHp"
-      type="number"
-      label="Boss 关卡外生命值降低"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.reducedHp"
+        type="number"
+        label="Boss 关卡外生命值降低"
+      ></VTextField>
 
-    <VTextField
-      v-model.number="form.getMoneyExceeds12"
-      type="number"
-      label="取钱一次性超过 12"
-    ></VTextField>
+      <VTextField
+        v-model.number="form.getMoneyExceeds12"
+        type="number"
+        label="取钱一次性超过 12"
+      ></VTextField>
+    </div>
+
+    <div grid grid-cols-2 gap="2">
+      <VBtn color="primary" @click="emit('updatePlayer', { ...form })">
+        提交
+      </VBtn>
+      <VBtn @click="emit('cancleEdit')">取消</VBtn>
+    </div>
   </VForm>
 </template>
 

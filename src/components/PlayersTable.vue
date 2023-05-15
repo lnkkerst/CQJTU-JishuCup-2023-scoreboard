@@ -5,7 +5,7 @@ import { VBtn } from 'vuetify/components';
 import type { Player } from '~/types';
 import { calculateScore } from '~/utils';
 
-const props = defineProps<{ players: Player[] }>();
+const props = defineProps<{ players: Player[]; search?: string }>();
 const emit = defineEmits<{
   (e: 'modifyPlayer', id: string): void;
   (e: 'deletePlayer', id: string): void;
@@ -32,7 +32,12 @@ const playerScores = computed(() =>
 
 <template>
   <div>
-    <VDataTable :headers="headers" :items="playerScores" items-per-page="-1">
+    <VDataTable
+      :headers="headers"
+      :items="playerScores"
+      items-per-page="-1"
+      :search="props.search"
+    >
       <template #[`item.operation`]="{ item }">
         <VBtn
           icon="mdi-pencil"
