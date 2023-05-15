@@ -123,6 +123,9 @@ export function calculateScore(player: Player) {
 
   extraScore += player.killedAnimals * 20;
 
+  extraScore += player.treasureChest.spike * 10;
+  extraScore += player.treasureChest.fish * 20;
+
   extraScore += player.specialBonus * 10;
 
   extraScore += player.comfortBonus * 50;
