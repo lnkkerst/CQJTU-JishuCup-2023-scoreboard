@@ -89,7 +89,8 @@ watch(
       :items="[
         { name: 'knight', title: '骑士' },
         { name: 'mizuki', title: '水月' },
-        { name: 'skadi', title: '大蒂' }
+        { name: 'skadi', title: '大蒂' },
+        { name: 'highmore', title: '海沫' }
       ]"
       item-title="title"
       item-value="name"

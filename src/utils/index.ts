@@ -7,7 +7,7 @@ export const LevelScores = Array.from(
   { length: 5 },
   (_, index) => index * 100 + 100
 );
-export const bossScores = { knight: 450, mizuki: 350, skadi: 250 };
+export const bossScores = { knight: 450, mizuki: 350, skadi: 250, highmore: 0 };
 export const difficultyBase = {
   0: 0.4,
   1: 0.5,

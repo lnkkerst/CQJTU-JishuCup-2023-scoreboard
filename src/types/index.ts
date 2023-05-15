@@ -3,7 +3,7 @@
  *
  * @type EndingBoss
  */
-export type EndingBoss = 'knight' | 'mizuki' | 'skadi';
+export type EndingBoss = 'knight' | 'mizuki' | 'skadi' | 'highmore';
 
 /**
  * 紧急作战
