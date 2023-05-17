@@ -4,7 +4,7 @@ import type { Player } from '~/types';
 export { Toast, Swal } from './swal';
 
 export const LevelScores = [100, 150, 200, 250, 300];
-export const bossScores = { knight: 450, mizuki: 350, skadi: 250, highmore: 0 };
+export const bossScores = { mizuki: 350, skadi: 250, highmore: 0 };
 export const difficultyBase = {
   0: 0.4,
   1: 0.5,
@@ -83,10 +83,14 @@ export function calculateScore(player: Player) {
 
   extraScore += player.buff * 50;
 
-  extraScore += player.delegateTasks.hard.over7level * 80;
+  // extraScore += player.delegateTasks.hard.over7level * 80;
   extraScore += player.delegateTasks.hard.normal * 30;
-  extraScore += player.delegateTasks.slightlyHard.over7level * 50;
+  // extraScore += player.delegateTasks.slightlyHard.over7level * 50;
   extraScore += player.delegateTasks.slightlyHard.normal * 20;
+  if (player.difficulty > 6.5) {
+    extraScore += player.delegateTasks.hard.normal * 80;
+    extraScore += player.delegateTasks.slightlyHard.normal * 50;
+  }
 
   {
     let scoreBase = 20;
@@ -99,16 +103,26 @@ export function calculateScore(player: Player) {
     extraScore += scoreBase * player.perfectBattle;
   }
 
-  if (player.endingBoss === 'knight' && player.clearKnightWithfragile) {
-    const { difficulty } = player;
-    if (difficulty > 4.5 && difficulty < 6.5) {
-      extraScore += 50;
+  if (player.withKnight) {
+    if (!player.knightDead && player.levels > 4.5) {
+      baseScore += 450;
+
+      if (player.clearKnightWithfragile) {
+        const { difficulty } = player;
+        if (difficulty > 4.5 && difficulty < 6.5) {
+          extraScore += 50;
+        }
+        if (difficulty > 6.5) {
+          extraScore += 80;
+        }
+        if (difficulty > 10.5) {
+          extraScore += 50;
+        }
+      }
     }
-    if (difficulty > 6.5) {
-      extraScore += 80;
-    }
-    if (difficulty > 10.5) {
-      extraScore += 50;
+
+    if (player.knightDead) {
+      baseScore -= 30;
     }
   }
 
@@ -130,8 +144,6 @@ export function calculateScore(player: Player) {
   extraScore += player.specialBonus * 10;
 
   extraScore += player.comfortBonus * 50;
-
-  baseScore -= player.knightDead ? 30 : 0;
 
   if (player.difficulty > 0.5 && player.difficulty < 6.5) {
     extraScore -= player.reducedHp * 10;

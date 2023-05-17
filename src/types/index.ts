@@ -3,7 +3,7 @@
  *
  * @type EndingBoss
  */
-export type EndingBoss = 'knight' | 'mizuki' | 'skadi' | 'highmore';
+export type EndingBoss = 'mizuki' | 'skadi' | 'highmore';
 
 /**
  * 紧急作战
@@ -57,6 +57,8 @@ export interface Player {
   negativeCollections: number;
   /** 结局类型 */
   endingBoss: EndingBoss;
+  /** 走骑士线 */
+  withKnight: boolean;
   /** 误入奇境 */
   wonderlands: Wonderland[];
   /** 白嫖干员 */

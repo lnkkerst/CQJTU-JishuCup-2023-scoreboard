@@ -88,7 +88,6 @@ watch(
       v-model="form.endingBoss"
       label="Boss 路线"
       :items="[
-        { name: 'knight', title: '骑士' },
         { name: 'mizuki', title: '水月' },
         { name: 'skadi', title: '大蒂' },
         { name: 'highmore', title: '海沫' }
@@ -97,7 +96,13 @@ watch(
       item-value="name"
     ></VSelect>
 
-    <VCard v-if="form.endingBoss === 'knight'" my="sm" variant="outlined">
+    <VCheckbox
+      v-model="form.withKnight"
+      label="选择骑士路线"
+      hide-details
+    ></VCheckbox>
+
+    <VCard v-if="form.withKnight" my="sm" variant="outlined">
       <div grid grid-cols-2>
         <VCheckbox
           v-model="form.clearKnightWithfragile"
@@ -178,11 +183,11 @@ watch(
         <VCard variant="outlined" pt="2">
           <VCardSubtitle>困难</VCardSubtitle>
           <VCardText>
-            <VTextField
-              v-model.number="form.delegateTasks.hard.over7level"
-              type="number"
-              label="超过七层"
-            ></VTextField>
+            <!-- <VTextField -->
+            <!--   v-model.number="form.delegateTasks.hard.over7level" -->
+            <!--   type="number" -->
+            <!--   label="超过七层" -->
+            <!-- ></VTextField> -->
             <VTextField
               v-model.number="form.delegateTasks.hard.normal"
               type="number"
@@ -194,11 +199,11 @@ watch(
         <VCard variant="outlined" pt="2">
           <VCardSubtitle>有点难</VCardSubtitle>
           <VCardText>
-            <VTextField
-              v-model.number="form.delegateTasks.slightlyHard.over7level"
-              type="number"
-              label="超过七层"
-            ></VTextField>
+            <!-- <VTextField -->
+            <!--   v-model.number="form.delegateTasks.slightlyHard.over7level" -->
+            <!--   type="number" -->
+            <!--   label="超过七层" -->
+            <!-- ></VTextField> -->
             <VTextField
               v-model.number="form.delegateTasks.slightlyHard.normal"
               type="number"
@@ -210,11 +215,11 @@ watch(
         <VCard variant="outlined" pt="2">
           <VCardSubtitle>简单</VCardSubtitle>
           <VCardText>
-            <VTextField
-              v-model.number="form.delegateTasks.easy.over7level"
-              type="number"
-              label="超过七层"
-            ></VTextField>
+            <!-- <VTextField -->
+            <!--   v-model.number="form.delegateTasks.easy.over7level" -->
+            <!--   type="number" -->
+            <!--   label="超过七层" -->
+            <!-- ></VTextField> -->
             <VTextField
               v-model.number="form.delegateTasks.easy.normal"
               type="number"
