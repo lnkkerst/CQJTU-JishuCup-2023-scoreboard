@@ -1,8 +1,8 @@
 [package]
 name = "arknight-maybe-calculator"
-version = "0.0.0"
+version = "1.1.1"
 description = "A Tauri App"
-authors = ["you"]
+authors = ["lnkkerst <lnkkerst04@gmail.com>"]
 license = ""
 repository = ""
 edition = "2021"

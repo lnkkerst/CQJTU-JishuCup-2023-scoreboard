@@ -228,7 +228,7 @@ watch(
     <VTextField
       v-model.number="form.perfectBattle"
       type="number"
-      label="战斗节点目标生命+护盾值不掉次数"
+      label="完美作战"
     ></VTextField>
 
     <div my="sm">
