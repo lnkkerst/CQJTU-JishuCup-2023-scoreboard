@@ -18,7 +18,7 @@ import { OverlayScrollbarsComponent } from 'overlayscrollbars-vue';
 import PlayersTable from '~/components/PlayersTable.vue';
 import { usePlayerState } from '~/state';
 import { Swal, Toast } from '~/utils';
-import { exportJson, importJson } from '~/utils/backup';
+import { exportCsv, exportJson, importJson } from '~/utils/backup';
 import { createNewPlayer } from '~/utils/player';
 import PlayerEditForm from '~/components/PlayerEditForm.vue';
 import type { Player } from '~/types';
@@ -129,8 +129,11 @@ function importPlayers(
               <VListItem @click="handleImportJson">
                 <VListItemTitle>导入(JSON)</VListItemTitle>
               </VListItem>
-              <VListItem @click="Toast.fire({ title: '还没写', icon: 'info' })">
-                <VListItemTitle>导出(CSV)</VListItemTitle>
+              <VListItem @click="exportCsv(players)">
+                <VListItemTitle>导出(CSV, 简略)</VListItemTitle>
+              </VListItem>
+              <VListItem @click="exportCsv(players, true)">
+                <VListItemTitle>导出(CSV, 详细)</VListItemTitle>
               </VListItem>
             </VList>
           </VMenu>
