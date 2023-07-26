@@ -161,12 +161,13 @@ function importPlayers(
     </div>
 
     <VDialog v-model="dialog" persistent width="auto">
-      <VCard w="4/5" max-w="720px" min-w="540px">
+      <VCard w="80vw" max-w="720px" mx="auto">
         <OverlayScrollbarsComponent>
           <VCardText>
             <PlayerEditForm
               :player="editPlayer"
               mt="xl"
+              min-w="400px"
               @update-player="handleUpdatePlayer"
               @cancle-edit="dialog = false"
             ></PlayerEditForm>
@@ -176,7 +177,7 @@ function importPlayers(
     </VDialog>
 
     <VDialog v-model="textDialog.open" close-on-back width="auto">
-      <VCard w="4/5" max-w="540px" min-w="360px">
+      <VCard w="80vw" max-w="540px">
         <OverlayScrollbarsComponent
           :options="{ scrollbars: { autoHide: 'move' } }"
         >
